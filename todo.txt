@@ -1,1 +1,32 @@
+Needs to be done
+  Build 3 Classes 2 Subclases
+  Add 3 Files for all of use to have our own space
+
+User    
+  Class Atributes
+    Next ID
+  Attributes 
+    ID, Name and Password 
+    # password later will probrably be encrypted and all will be in DB later
+
+  Methods
+    Login 
+    Register
+    Change Password 
+    #Make Sesson
+    #Check Session 
+
+Admin
+  Attributes 
+    Admin Password # Definitely Hashed and Salted
+
+  Methods 
+    Confirm Sound
+    Remove Sound
+    Confirm SoundBoard
+    Remove SoundBoard
+    #Undo Remove Sound/Soundboard
+
+Guest
+
 

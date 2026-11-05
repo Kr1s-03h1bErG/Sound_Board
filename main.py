@@ -11,4 +11,6 @@ class Guest:
 class Admin(User):
     def __init__(self, id):
         self.id = Admin.next_id
+    @classmethod
+    
     

@@ -1,5 +1,11 @@
-from main.py import User
+from main import User
 
 class Guest(User):
     def __init__(self):
-        pass
+        
+
+
+    def confirm_board(self):
+        raise NotImplementedError("Geusts cannot confirm a soundboard")
+    def confirm_sound(self):
+        raise NotImplementedError("Geusts cannot confirm a soundboard")

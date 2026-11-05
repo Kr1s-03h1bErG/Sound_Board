@@ -8,10 +8,9 @@ class User:
 class Guest:
     def __init__(self):
         pass
-        
+
 class Admin(User):
     def __init__(self, id):
         self.id = Admin.next_id
-    @classmethod
     
     

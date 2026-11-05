@@ -12,13 +12,19 @@ User
   Methods
     Login 
     Register
-    Change Password 
+    Change Password
+    Create Soundboard
+    Create Sound
+    Edit Sound and Soundboard
     #Make Sesson
     #Check Session 
+    
 
 Admin
+  
   Attributes 
     Admin Password # Definitely Hashed and Salted
+    Inherits off of User
 
   Methods 
     Confirm Sound
@@ -28,5 +34,11 @@ Admin
     #Undo Remove Sound/Soundboard
 
 Guest
+  Attributes 
+  Inherits off of User
+
+Methods
+  
+    
 
 

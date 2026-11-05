@@ -9,7 +9,7 @@ class Guest(User):
         Guest.next_guest += 1
         Guest.all_guest.append(self) 
         self.sounds = []
-        self.board = []
+        self.boards = []
 
 
     def confirm_board(self):
@@ -17,6 +17,8 @@ class Guest(User):
     def confirm_sound(self):
         raise NotImplementedError("Guests cannot confirm")
 
-    # def convert_to_user(self)
-    #     pass
+    def convert_to_user(self):
+        name = input("what is your name: ")
+        password = input("what is your password: ")
+        new_user = User(name, password, self.sounds, self.board)
         

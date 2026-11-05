@@ -1,9 +1,18 @@
 class User:
     next_id = 0
     all_users = []
-    def __init__(self, id):
+    def __init__(self, name, password):
         self.id = User.next_id
-        allusers.append(id)
+        User.allusers.append(id)
+        self.name = name
+        self.password = password
+        self.sounds = []
+        self.boards = []
+    # @classmethod
+    # def login()
+
+    # @classmethod
+    # def register()
 
 class Guest:
     def __init__(self):

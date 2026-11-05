@@ -38,8 +38,8 @@ Guest
   Inherits off of User
 
 Methods
-  Inherits all User Meathods but post sound/soundboard 
-  Update Geust Account
+  Inherits all User Methods but post sound/soundboard 
+  Update Guest Account
 
 Sounds
   Class Atributes 

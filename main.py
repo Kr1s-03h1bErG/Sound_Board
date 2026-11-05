@@ -7,3 +7,8 @@ class User:
 
 class Guest:
     def __init__(self):
+
+class Admin(User):
+    def __init__(self, id):
+        self.id = Admin.next_id
+    

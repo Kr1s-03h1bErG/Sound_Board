@@ -38,7 +38,24 @@ Guest
   Inherits off of User
 
 Methods
+  Inherits all User Meathods but post sound/soundboard 
+  Update Geust Account
+
+Sounds
+  Class Atributes 
+    Sound_id
+    All_Sounds 
+  Attributes
+    id, name,  
+    #sound file, # Need DB for this  
+    tags, # defaults to a list  
+    is_public # defaults to a False
+
+  Methods 
+    #Play sound 
+    
   
+
     
 
 

@@ -32,13 +32,13 @@ def get_response(text):
 #checks Returns if it succeeded or failed (bool)
 def login():
     while True:
-        need_login = get_response("Do you need to login? Y/N: ")
+        need_login = get_response("Do you need to login? Y/N:")
         if need_login: # change here 
             username = get_response("What is your Username?: ")
             password = get_response("What is your Password?: ")
             return User.is_password_users(username, password) , username, password 
         else: # return that it failed to login so we can register later
-            print("Failed to find name in db/user didn't need to")
+            rprint("[bold black]Failed to find name in db/user didn't need to[/bold black]")
             return [False, False] , "", ""
 
 def register():

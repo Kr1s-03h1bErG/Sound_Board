@@ -55,7 +55,7 @@ Sounds
     #Play sound 
     
   
-
-    
+Add object to kill same name. Still refer by ID but use name for easier access.
+    QUIN: PRETTY PRINT, MAKE FUNCTION THAT LISTS ALL THE COLORS YOU CAN CHOOSE FROM
 
 

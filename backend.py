@@ -75,9 +75,9 @@ def sound_menu(user):
         elif user_choice == 2:
             Sound.list_all_sounds()
         elif user_choice == 3:
-            name = input("enter the name for your sound: ")
-            fname = input("enter the file name for your sound: ")
-            furl = input("enter the url for your sound: ")
+            name = input("Enter the name for your sound: ")
+            fname = input("Enter the file name for your sound: ")
+            furl = input("Enter the url for your sound: ")
             new_sound = Sound(name, fname, furl)
             did_succeed = new_sound.play_sound()
             if did_succeed:
@@ -94,7 +94,7 @@ def sound_menu(user):
             if Sound.list_all_sounds(): 
                 user_choice = input("What sound would you like to play from sounds above?")
                 sound = Sound.get_sound_by_id(Sound.get_sound_id_by_name(user_choice))
-                if sound.type == "public":
+                if sound.type == "Public":
                     sound.play_sound()
                 else:
                     print("Sound must be public to be played!")
@@ -116,7 +116,7 @@ def sound_menu(user):
                 user_choice = input("What sound would you like to publish from sounds above?")
                 sound = Sound.get_sound_by_id(Sound.get_sound_id_by_name(user_choice)) 
                 if sound.id in user.sounds:
-                    if sound.type == "privite":
+                    if sound.type == "Private":
                         print(f"Sound: {sound.name} is now pending aproval")
                         sound.make_sound_public()
                     elif sound.type == "pending":
@@ -160,20 +160,20 @@ def admin_menu(user):
             else:
                 print("Sound not in pending sounds!")
         elif user_choice == 4:
-            print("Not implimented yet")
+            print("Not implemented yet")
         elif user_choice == 5:
             for sound_id in Sound.pending_sounds:
                 sound = Sound.get_sound_by_id(sound_id)
                 if sound.type == "pending":
-                    print(f"ID: {sound.id} | name: {sound.file_name} | furl: {sound.furl} | file name {sound.file_name}")
-            sound_id = input("please enter a sound id from the ID's above: ")
+                    print(f"ID: {sound.id} | name: {sound.file_name} | file url: {sound.furl} | file name {sound.file_name}")
+            sound_id = input("Please enter a sound ID from the ID's above: ")
             if sound_id in Sound.pending_sounds:
                 sound = Sound.get_sound_by_id(sound_id)
                 sound.remove_sound()
             else:
                 print("Sound not in pending sounds!")
         elif user_choice == 6:
-            print("Not implimented yet")
+            print("Not implemented yet")
 
 # seed a admin into the system
 Admin("a", "a", "a")
@@ -210,7 +210,7 @@ def main():
             soundboard_menu(user)
         elif user_choice == 4:
             if user.role == "Admin":
-                password = input("please enter admin password")
+                password = input("Please enter admin password")
                 if password == user.apassword:
                     admin_menu(user)
                 else: 

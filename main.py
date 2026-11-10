@@ -111,7 +111,7 @@ class Sound:
         self.name = name
         self.file_name = file_name
         self.file_url = file_url
-        self.type = "privite"
+        self.type = "private"
         Sound.all_sounds.append(self)
     # returns id (int)
     @classmethod
@@ -130,7 +130,7 @@ class Sound:
             if sound.name == name:
                 return sound.id
             else: 
-                print("coulden't find sound")
+                print("couldn't find sound")
     # returns obj
     @classmethod
     def get_sound_by_id(cls, id):

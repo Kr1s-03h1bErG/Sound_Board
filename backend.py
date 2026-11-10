@@ -36,7 +36,7 @@ def login():
         if need_login: # change here 
             username = get_response("What is your Username?: ")
             password = get_response("What is your Password?: ")
-            return User.is_password_users(username, password) , username, password 
+            return [User.is_password_users(username, password) , username, password] 
         else: # return that it failed to login so we can register later
             rprint("[bold black]Failed to find name in db/user didn't need to[/bold black]")
             return [[False, False] , "", ""]

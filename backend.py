@@ -68,6 +68,8 @@ def overview_menu(user):
             if password == user.password:
                 new_password = input("please enter new password: ")
                 user.change_password(new_password)
+                print("Password was Changed exiting menu!")
+                return "Password Was Changed!"    
             else:
                 print("Password was incorrect!")
         elif user_choice == 3:
@@ -152,6 +154,8 @@ def admin_menu(user):
                 if admin_password == user.apassword:
                     new_admin_password = input("please enter new admin password: ")
                     user.change_admin_password(new_admin_password)
+                    print("Password was Changed exiting menu!")
+                    return "Password Was Changed!"  
                 else:
                     print("Admin Password was incorrect!")
             else:
@@ -210,7 +214,9 @@ def main():
         user_choice = get_response(menu)
         if user_choice == 1:
             is_logout = overview_menu(user)
-            if is_logout:
+            if is_logout == "Password Was Changed!"
+                login_stats[2] = user.password
+            elif is_logout:
                 break
         elif user_choice == 2:
             sound_menu(user)
@@ -220,7 +226,7 @@ def main():
             if user.role == "Admin":
                 password = input("Please enter admin password")
                 if password == user.apassword:
-                    admin_menu(user)
+                    is_logout = admin_menu(user)
                 else: 
                     print("Admin Password Incorrect!")
             else:

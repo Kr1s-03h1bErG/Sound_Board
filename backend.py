@@ -39,7 +39,7 @@ def login():
             return User.is_password_users(username, password) , username, password 
         else: # return that it failed to login so we can register later
             rprint("[bold black]Failed to find name in db/user didn't need to[/bold black]")
-            return [False, False] , "", ""
+            return [[False, False] , "", ""]
 
 def register():
     need_register = get_response("Do you need to register? Y/N: ")
@@ -214,7 +214,7 @@ def main():
         user_choice = get_response(menu)
         if user_choice == 1:
             is_logout = overview_menu(user)
-            if is_logout == "Password Was Changed!"
+            if is_logout == "Password Was Changed!":
                 login_stats[2] = user.password
             elif is_logout:
                 break

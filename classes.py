@@ -1,3 +1,11 @@
+from rich import pretty, print as rprint, console, style, panel, padding
+from rich.pretty import pprint
+from rich.style import Style
+from rich.console import Console
+from rich.padding import Padding
+console = Console() #DO NOT DELETE ME 
+#yes that's reallynecessary
+
 import os
 import requests
 from playsound3 import playsound  # pip install playsound

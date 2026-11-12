@@ -191,7 +191,7 @@ def admin_menu(user):
 Admin("a", "a", "a")
 def main():
     while True:
-        print(User.all_users)
+        # print(User.all_users)
         # login_stat[2] = password
         # login_stat[1] = username 
         # login_stat[0] = [user exists, is pass users] 

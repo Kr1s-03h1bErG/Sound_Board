@@ -11,8 +11,24 @@ from main import User, Sound
 class Button:
     next_id = 0
     all_buttons = []
-    def __init__(self, name, sound_obj):
-        self.name = 
+    all_colors = []
+    def __init__(self, button_name, button_sound_id, trigger_string):
+        self.button_name = button_name
+        self.button_sound_id = button_sound_id
+        self.list_of_soundboards_used_in = button_sound_id
+        self.color = "white"
+        self.backround = "black"
+        self.trigger_string = trigger_string
+        self.innertext = trigger_string
+
+    @classmethod
+    def list_all_buttons(cls):
+        for button in Button.all_buttons:
+            button.list_button()
+    def list_button(self)
+        print(f"sound: {self.button_name} | sound name: {}")
+        
+        
 
 # needs toi add button logic
 class Soundboard:
@@ -56,6 +72,7 @@ class Soundboard:
     def make_soundboard_public(self):
         self.type = "pending"
         Soundboard.pending_sounds.append(self.id)
+
 #  killed playsound
     def remove_soundboard(self):
         print(f"deleting: {self.name}")

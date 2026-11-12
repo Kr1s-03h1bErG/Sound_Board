@@ -58,7 +58,7 @@ def register():
 # add this stuff
 def overview_menu(user):
     while True:
-        user_choice = get_response("    1. User Overview\n    2. Change Password\n    3. Logout\n    q to quit!")
+        user_choice = get_response("    1. User Overview\n    2. Change Password\n    3. Logout\n    q to quit!\n")
         if user_choice == "q":
             return False # this just works ig 
         elif user_choice ==  1:

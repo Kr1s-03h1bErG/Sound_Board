@@ -73,7 +73,7 @@ def overview_menu(user):
             else:
                 print("Password was incorrect!")
         elif user_choice == 3:
-            print(f"loging user: {user.name} out")
+            print(f"logging user: {user.name} out")
             return True
 def sound_menu(user):
     while True:
@@ -142,7 +142,7 @@ def soundboard_menu(user):
     pass
 def admin_menu(user):
     while True:
-        user_choice = get_response("    1. Admin Overview\n    2. Change Admin Password\n    3. Check Sounds\n    4. Check Sound Boards\n    5. Remove Sounds\n    6. Remove Sound Boards\n    q to quit!")
+        user_choice = get_response("    1. Admin Overview\n    2. Change Admin Password\n    3. Check Sounds\n    4. Check Sound Boards\n    5. Remove Sounds\n    6. Remove Sound Boards\n    q to quit!\n")
         if user_choice == "q":
             return False # this just works ig 
         elif user_choice ==  1:

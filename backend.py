@@ -36,29 +36,34 @@ def login():
         if need_login: # change here 
             username = get_response("What is your Username?: ")
             password = get_response("What is your Password?: ")
+            result = User.is_password_users(username, password)
 
-            if User.is_password_users(username, password)[0]== False and  User.is_password_users(username, password)[1] == False:
-                rprint("[bold black]Failed to find name in db/user didn't need to[/bold black]")
-                return [[False, False] , "", ""]
-            return [User.is_password_users(username, password) , username, password] 
-        # else: # return that it failed to login so we can register later
-        #     rprint("[bold black]Failed to find name in db/user didn't need to[/bold black]")
-        #     return [[False, False] , "", ""]
+            if result[0] == False and result[1] == False:
+                rprint("[bold black]Failed to find user in database[/bold black]")
+                return [[False, False], "", ""]
+            return [result, username, password]
+
+        elif need_login is False:
+            rprint("[bold navy_blue]Registeration[/bold navy_blue]")
+            return "register"
+
+        else:
+            rprint("Please enter Y or N.")
+
 
 def register():
-    need_register = get_response("Do you need to register? Y/N: ")
-    while True:
-        if need_register:
-            username = get_response("What will be your Username?: ")
+        while True:
+            username = get_response("What will be your Username?: ").strip()
             password = get_response("What is your Password?: ")
+
             if User.is_user_in_user(username): # change here 
                 print("username already in db restarting register")
             else:
                 User(username, password)
                 return True
-        else: # return that it failed to login so we can register later
-            print("User Didn't need to register for new account! ")
-            return False
+        # else: # return that it failed to login so we can register later
+        #     # print("User Didn't need to register for new account! ")
+        #     # return False
 # add this stuff
 def overview_menu(user):
     while True:
@@ -200,20 +205,27 @@ def admin_menu(user):
 Admin("a", "a", "a")
 def main():
     while True:
+        print(User.all_users)
+        login_stats = login()
         # print(User.all_users)
         # login_stat[2] = password
         # login_stat[1] = username 
         # login_stat[0] = [user exists, is pass users] 
-        login_stats = login()
+        if login_stats == "register":
+            register()
+            continue
+        
         if login_stats[0][0] and login_stats[0][1]:
             break 
-        else:
-            register()
+        # else:
+        #     register()
     while True:
         #changed from dict to object
         # user session is justg for debug now ig
         # user_session = User.get_users_login_session(User.get_user_id_by_login(login_stats[1], login_stats[2]))
-        user = User.get_user_by_id(User.get_user_id_by_login(login_stats[1], login_stats[2]))
+        user = User.get_user_by_id(
+            User.get_user_id_by_login(login_stats[1], login_stats[2])
+            )
         # print(user_session)
         print("")
         menu = "1: User Overview Menu\n2. Sound Menu\n3. Soundboard Menu\n"

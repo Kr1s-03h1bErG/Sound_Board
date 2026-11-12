@@ -1,32 +1,90 @@
-from classes import User, Sound, Admin
+from main import User, Sound, Admin
 from rich import pretty, print as rprint, console, style, panel, padding
 from rich.pretty import pprint
 from rich.style import Style
 from rich.console import Console
 from rich.padding import Padding
 console = Console() #DO NOT DELETE ME 
-#yes that's reallynecessary 
+#yes that's reallynecessary
+def get_response(text):
+    player_response = input(text)
+    stripped_player_response = player_response.strip()
+    nice_player_response = stripped_player_response.lower()
+    # makes the response useable 
 
-# def soundboard_menu(user):
-#     while True:
-#         user_choice = get_response("    1. User Overview\n    2. Change Password\n    3. Logout\n    q to quit!")
-#         if user_choice == "q":
-#             return False # this just works ig 
-#         elif user_choice ==  1:
-#             user.overview()
-#         elif user_choice ==  2:
-#             password = input("please enter password: ")
-#             if password == user.password:
-#                 new_password = input("please enter new password: ")
-#                 user.change_password(new_password)
-#             else:
-#                 print("Password was incorrect!")
-#         elif user_choice == 3:
-#             print(f"loging user: {user.name} out")
-#             return True
-def sounds_menu(user):
+    # checks if y/n and sets it to false or True
+
+    if nice_player_response == "y":
+        return True
+    elif nice_player_response == "n":
+        return False
+    try:
+        old_player_response = nice_player_response
+        nice_player_response = int(nice_player_response)
+        nums = [1,2,3,4,5,6,7,8,9,0]
+        if  nice_player_response in nums:
+            return int(nice_player_response)
+    except:
+        nice_player_response = old_player_response
+    return nice_player_response
+
+#checks Returns if it succeeded or failed (bool)
+def login():
     while True:
-        user_choice = get_response("    1. View Sound Board \n    2.  Delete Sound Board \n    3. Change Sound Board \n    4. Create Sound Board \n    5. \n    6. \n    q to quit!\n")
+        need_login = get_response("Do you need to login? Y/N: ")
+
+        if need_login is True:
+            username = input("What is your Username?: ").strip()
+            password = input("What is your Password?: ")
+
+            result = User.is_password_users(username, password)
+
+            if result[0] == False and result[1] == False:
+                rprint("[bold black]Failed to find user in database[/bold black]")
+                return [[False, False], "", ""]
+
+            return [result, username, password]
+
+        elif need_login is False:
+            rprint("Taking you to registration...")
+            return "REGISTER"
+
+        else:
+            rprint("Please enter Y or N.")
+
+def register():
+    while True:
+        username = input("What will be your Username?: ").strip()
+        password = input("What is your Password?: ")
+
+        if User.is_user_in_user(username):
+            print("Username already in database. Try again!")
+        else:
+            User(username, password)
+            print("Registration successful!")
+            return True
+def overview_menu(user):
+    while True:
+        user_choice = get_response("    1. User Overview\n    2. Change Password\n    3. Logout\n    q to quit!\n")
+        if user_choice == "q":
+            return False # this just works ig 
+        elif user_choice ==  1:
+            user.overview()
+        elif user_choice ==  2:
+            password = input("please enter password: ")
+            if password == user.password:
+                new_password = input("please enter new password: ")
+                user.change_password(new_password)
+                print("Password was Changed exiting menu!")
+                return "Password Was Changed!"    
+            else:
+                print("Password was incorrect!")
+        elif user_choice == 3:
+            print(f"logging user: {user.name} out")
+            return True
+def sound_menu(user):
+    while True:
+        user_choice = get_response("    1. Personal Sound Overview\n    2. Global Public Sound Overview\n    3. Make Sound\n    4. Play Public Sound\n    5. Play your Sounds\n    6. Publish a Sound\n    q to quit!\n")
         if user_choice == "q":
             return True # this just works ig 
         elif user_choice ==  1:
@@ -87,48 +145,79 @@ def sounds_menu(user):
             else:
                 print("You must have sounds in order to make a sound public!")
 
-# # def soundboard_menu(user):
-# #     pass
-# # def admin_menu(user):
-# #     while True:
-# #         user_choice = get_response("    1. Admin Overview\n    2. Change Admin Password\n    3. Check Sounds\n    4. Check Sound Boards\n    5. Remove Sounds\n    6. Remove Sound Boards\n    q to quit!")
-# #         if user_choice == "q":
-# #             return False # this just works ig 
-# #         elif user_choice ==  1:
-# #             user.overview()
-# #         elif user_choice ==  2:
-# #             password = input("please enter password: ")
-# #             if password == user.password:
-# #                 admin_password = input("please enter admin password: ")
-# #                 if admin_password == user.apassword:
-# #                     new_admin_password = input("please enter new admin password: ")
-# #                     user.change_admin_password(new_admin_password)
-# #                 else:
-# #                     print("Admin Password was incorrect!")
-# #             else:
-# #                 print("Password was incorrect!")
-# #         elif user_choice == 3:
-# #             for sound_id in Sound.pending_sounds:
-# #                 sound = Sound.get_sound_by_id(sound_id)
-# #                 if sound.type == "pending":
-# #                     print(f"ID: {sound.id} | name: {sound.file_name} | file url: {sound.file_url} | file name {sound.file_name}")
-# #             sound_id = input("please enter a sound id from the ID's above to make public: ")
-# #             if int(sound_id) in Sound.pending_sounds:
-# #                 sound = Sound.get_sound_by_id(int(sound_id))
-# #                 sound.confirm_sound()
-# #             else:
-# #                 print("Sound not in pending sounds!")
-# #         elif user_choice == 4:
-# #             print("Not implemented yet")
-# #         elif user_choice == 5:
-# #             for sound_id in Sound.pending_sounds:
-# #                 sound = Sound.get_sound_by_id(sound_id)
-# #                 if sound.type == "pending":
-# #                     print(f"ID: {sound.id} | name: {sound.file_name} | file url: {sound.furl} | file name {sound.file_name}")
-# #             sound_id = input("Please enter a sound ID from the ID's above: ")
-# #             if sound_id in Sound.pending_sounds:
-# #                 sound = Sound.get_sound_by_id(sound_id)
-# #                 sound.remove_sound()
-# #             else:
-# #                 print("Sound not in pending sounds!")
-# #         elif user_choice == 6:
+def soundboard_menu(user):
+    pass
+def admin_menu(user):
+    while True:
+        user_choice = get_response("    1. Admin Overview\n    2. Change Admin Password\n    3. Check Sounds\n    4. Check Sound Boards\n    5. Remove Sounds\n    6. Remove Sound Boards\n    q to quit!\n")
+        if user_choice == "q":
+            return False # this just works ig 
+        elif user_choice ==  1:
+            user.overview()
+        elif user_choice ==  2:
+            password = input("please enter password: ")
+            if password == user.password:
+                admin_password = input("please enter admin password: ")
+                if admin_password == user.apassword:
+                    new_admin_password = input("please enter new admin password: ")
+                    user.change_admin_password(new_admin_password)
+                    print("Password was Changed exiting menu!")
+                    return "Password Was Changed!"  
+                else:
+                    print("Admin Password was incorrect!")
+            else:
+                print("Password was incorrect!")
+        elif user_choice == 3:
+            for sound_id in Sound.pending_sounds:
+                sound = Sound.get_sound_by_id(sound_id)
+                if sound.type == "pending":
+                    print(f"ID: {sound.id} | name: {sound.file_name} | file url: {sound.file_url} | file name {sound.file_name}")
+            sound_id = input("please enter a sound id from the ID's above to make public: ")
+            if int(sound_id) in Sound.pending_sounds:
+                sound = Sound.get_sound_by_id(int(sound_id))
+                sound.confirm_sound()
+            else:
+                print("Sound not in pending sounds!")
+        elif user_choice == 4:
+            print("Not implemented yet")
+        elif user_choice == 5:
+            for sound_id in Sound.pending_sounds:
+                sound = Sound.get_sound_by_id(sound_id)
+                if sound.type == "pending":
+                    print(f"ID: {sound.id} | name: {sound.file_name} | file url: {sound.furl} | file name {sound.file_name}")
+            sound_id = input("Please enter a sound ID from the ID's above: ")
+            if sound_id in Sound.pending_sounds:
+                sound = Sound.get_sound_by_id(sound_id)
+                sound.remove_sound()
+            else:
+                print("Sound not in pending sounds!")
+        elif user_choice == 6:
+            print("Not implemented yet")
+
+# seed a admin into the system
+Admin("a", "a", "a")
+def main():
+    while True:
+        print(User.all_users)
+
+        login_stats = login()
+
+        # User selected N, go directly to registration
+        if login_stats == "REGISTER":
+            register()
+            continue
+
+        # Login successful
+        if login_stats[0][0] and login_stats[0][1]:
+            break
+
+        # Login unsuccessful
+        print("Login failed. Please try again.")
+
+    while True:
+        user = User.get_user_by_id(
+            User.get_user_id_by_login(login_stats[1], login_stats[2])
+        )
+
+while True:
+    main()

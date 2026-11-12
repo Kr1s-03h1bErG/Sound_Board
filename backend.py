@@ -33,13 +33,17 @@ def get_response(text):
 def login():
     while True:
         need_login = get_response("Do you need to login? Y/N:")
-        if need_login: # change here 
+        if need_login == 'y': # change here 
             username = get_response("What is your Username?: ")
             password = get_response("What is your Password?: ")
+
+            if User.is_password_users(username, password)[0]== False and  User.is_password_users(username, password)[1] == False:
+                rprint("[bold black]Failed to find name in db/user didn't need to[/bold black]")
+                return [[False, False] , "", ""]
             return [User.is_password_users(username, password) , username, password] 
-        else: # return that it failed to login so we can register later
-            rprint("[bold black]Failed to find name in db/user didn't need to[/bold black]")
-            return [[False, False] , "", ""]
+        # else: # return that it failed to login so we can register later
+        #     rprint("[bold black]Failed to find name in db/user didn't need to[/bold black]")
+        #     return [[False, False] , "", ""]
 
 def register():
     need_register = get_response("Do you need to register? Y/N: ")

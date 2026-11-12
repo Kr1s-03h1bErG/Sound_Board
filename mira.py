@@ -1,12 +1,1 @@
-class Admin(User):
-    def __init__(self, id):
-        self.id = Admin.next_id
-#functions and shit that admin can do
-    def confirm_sound():
-        pass
-    def remove_sound():
-        pass
-    def confirm_board():
-        pass
-    def remove_board():
-        pass
+colorchoices = [medium_orchid3, grey63, deep_pink4, dark_violet, red3, dark_red, hot_pink3, dark_orange3, light_pink3, sandy_brown, orange3, gold3, tan, yellow3, light_salmon1, green_yellow, dark_khaki, dark_sea_green3, rosy_brown, medium_purple, sea_green2, dark_sea_green4, cadet_blue, pale_turquoise4, navy_blue, dodger_blue3, turquoise4, green4, dark_cyan, cyan3, spring_green1, purple3, purple4, grey37, dark_magenta, pink1, thistle1, grey35, grey3, grey82, grey93, orchid2]

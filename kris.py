@@ -23,6 +23,8 @@ class Button:
     ]
 
     def __init__(self, button_name, button_sound_id, trigger_string):
+        self.button_id = Button.next_id 
+        Button.next_id += 1
         self.button_name = button_name
         self.button_sound_id = button_sound_id
         self.list_of_soundboards_used_in = button_sound_id
@@ -30,15 +32,45 @@ class Button:
         self.backround = "black"
         self.trigger_string = trigger_string
         self.innertext = trigger_string
+        Button.all_buttons.append(self)
 
     @classmethod
     def list_all_buttons(cls):
         for button in Button.all_buttons:
+            button.list_button() 
+    @classmethod
+    def list_all_buttons(cls):
+        for button in Button.all_buttons:
             button.list_button()
-    def list_button(self)
-        print(f"sound: {self.button_name} | sound name: {}")
-        
-        
+
+    @classmethod
+    def list_colors(cls):
+        for color in Button.all_colors:
+            console.print(color, style=color)
+    @classmethod
+    def is_color_a_color(cls, user_color):
+        if user_color in Button.all_colors:
+            return True
+        else:
+            return False
+    def list_button(self):
+        button_sound = Sound.get_sound_by_id(self.button_sound_id)
+        print(f"sound: {self.button_name} | sound name: {button_sound.name} | trigger: {self.trigger_string} | color: {self.color} | backround: {self.backround}")
+
+    def change_trigger(self, new_trigger):
+        self.trigger_string = new_trigger
+         
+# print(Button.is_color_a_color("black"))
+# print(Button.is_color_a_color("grey3")) is color color works 
+# Sound("fctgy", "fyup", "fsdhup") 
+# Sound("bhgdasyupi", "fyup", "fsdhup")
+# Sound("ffdshuj[]", "fyup", "fsdhup")
+
+# Button("DFGJHJ", 0, "HGF")
+# Button("CGHJL.", 1, "DSF")
+# Button("VFYUH;L", 2, "SFDSD")
+# Button.list_all_buttons()       
+# list_all_ sounds and buttons work
 
 # needs toi add button logic
 class Soundboard:
@@ -99,7 +131,6 @@ class Soundboard:
         self.type = "public"
         Soundboard.public_sounds.append(self.id)
         print(f"confirming soundboard: {self.name}")
-
 
 # class Guest(User):
 #     next_guest = 0

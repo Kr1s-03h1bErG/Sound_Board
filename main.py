@@ -16,7 +16,7 @@ class User:
     def __init__(self, name, password):
         self.id = User.next_id
         User.next_id += 1
-        User.all_users.append(self)  #ggat
+        User.all_users.append(self)
         self.name = name
         self.password = password
         self.sounds = []

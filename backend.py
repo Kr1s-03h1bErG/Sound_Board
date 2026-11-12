@@ -33,7 +33,7 @@ def get_response(text):
 def login():
     while True:
         need_login = get_response("Do you need to login? Y/N:")
-        if need_login == 'y': # change here 
+        if need_login: # change here 
             username = get_response("What is your Username?: ")
             password = get_response("What is your Password?: ")
 

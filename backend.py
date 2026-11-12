@@ -143,6 +143,11 @@ def sound_menu(user):
                 print("You must have sounds in order to make a sound public!")
 
 def soundboard_menu(user):
+    while True:
+        user_choice = get_response("    1. Personal Soundboard Overview\n    2. Global Public Soundboard Overview\n    3. Make Soundboard\n    4. Add Soundboard button\n    5. Copy a Soundboard\n    6. Copy a Soundboard Button\n  7. Publish a Soundboard\n  8. Go to Soundboard Menu\n    q to quit!\n")
+        if user_choice == "q":
+            return True # this just works ig 
+        
     pass
 def admin_menu(user):
     while True:
